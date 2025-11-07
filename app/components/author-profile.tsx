@@ -48,11 +48,11 @@ export function AuthorProfile({
                 rel="noopener noreferrer"
                 className="text-lg font-medium text-neutral-900 dark:text-neutral-100 hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors"
               >
-                {author}
+                {author} Sir
               </Link>
             ) : (
               <h3 className="text-lg font-medium text-neutral-900 dark:text-neutral-100">
-                {author}
+                {author} Sir
               </h3>
             )}
           </div>
