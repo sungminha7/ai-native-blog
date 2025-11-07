@@ -7,6 +7,10 @@ type Metadata = {
   summary: string
   image?: string
   subTitle?: string
+  author?: string
+  authorBio?: string
+  authorImage?: string
+  authorUrl?: string
 }
 
 function parseFrontmatter(fileContent: string) {
