@@ -1,5 +1,27 @@
 @import 'tailwindcss';
 
+@theme {
+  --color-bg-light: #fff;
+  --color-bg-dark: #000;
+  --color-text-light: #000;
+  --color-text-dark: #fff;
+}
+
+@layer base {
+  html.dark {
+    color-scheme: dark;
+    background-color: #000;
+    color: #fff;
+  }
+
+  html.light,
+  html:not(.dark) {
+    color-scheme: light;
+    background-color: #fff;
+    color: #000;
+  }
+}
+
 ::selection {
   background-color: #47a3f3;
   color: #fefefe;
@@ -27,6 +49,13 @@
   html {
     color-scheme: dark;
   }
+}
+
+.dark :root {
+  --sh-class: #4c97f8;
+  --sh-identifier: white;
+  --sh-keyword: #f47067;
+  --sh-string: #0fa295;
 }
 
 html {
