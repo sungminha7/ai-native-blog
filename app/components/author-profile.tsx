@@ -8,6 +8,81 @@ interface AuthorProfileProps {
   authorUrl?: string
 }
 
+interface AuthorAvatarProps {
+  imageUrl: string
+  authorName: string
+}
+
+interface AuthorInitialAvatarProps {
+  authorName: string
+}
+
+interface AuthorNameProps {
+  name: string
+  url?: string
+}
+
+const AVATAR_SIZE = 64
+const AVATAR_CLASSES = 'rounded-full'
+
+function AuthorAvatar({ imageUrl, authorName }: AuthorAvatarProps) {
+  return (
+    <div className="flex-shrink-0">
+      <Image
+        src={imageUrl}
+        alt={authorName}
+        width={AVATAR_SIZE}
+        height={AVATAR_SIZE}
+        className={AVATAR_CLASSES}
+      />
+    </div>
+  )
+}
+
+function AuthorInitialAvatar({ authorName }: AuthorInitialAvatarProps) {
+  const initial = authorName.charAt(0).toUpperCase()
+
+  return (
+    <div className="flex-shrink-0 w-16 h-16 rounded-full bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center">
+      <span className="text-2xl font-medium text-neutral-600 dark:text-neutral-400">
+        {initial}
+      </span>
+    </div>
+  )
+}
+
+function AuthorName({ name, url }: AuthorNameProps) {
+  const displayName = `${name} Sir`
+  const nameClassName = 'text-lg font-medium text-neutral-900 dark:text-neutral-100'
+
+  if (url) {
+    return (
+      <Link
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${nameClassName} hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors`}
+      >
+        {displayName}
+      </Link>
+    )
+  }
+
+  return (
+    <h3 className={nameClassName}>
+      {displayName}
+    </h3>
+  )
+}
+
+function AuthorBio({ bio }: { bio: string }) {
+  return (
+    <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+      {bio}
+    </p>
+  )
+}
+
 export function AuthorProfile({
   author,
   authorBio,
@@ -21,46 +96,17 @@ export function AuthorProfile({
   return (
     <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800">
       <div className="flex items-start gap-4">
-        {authorImage && (
-          <div className="flex-shrink-0">
-            <Image
-              src={authorImage}
-              alt={author}
-              width={64}
-              height={64}
-              className="rounded-full"
-            />
-          </div>
+        {authorImage ? (
+          <AuthorAvatar imageUrl={authorImage} authorName={author} />
+        ) : (
+          <AuthorInitialAvatar authorName={author} />
         )}
-        {!authorImage && (
-          <div className="flex-shrink-0 w-16 h-16 rounded-full bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center">
-            <span className="text-2xl font-medium text-neutral-600 dark:text-neutral-400">
-              {author.charAt(0).toUpperCase()}
-            </span>
-          </div>
-        )}
+
         <div className="flex-grow min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            {authorUrl ? (
-              <Link
-                href={authorUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-lg font-medium text-neutral-900 dark:text-neutral-100 hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors"
-              >
-                {author} Sir
-              </Link>
-            ) : (
-              <h3 className="text-lg font-medium text-neutral-900 dark:text-neutral-100">
-                {author} Sir
-              </h3>
-            )}
+            <AuthorName name={author} url={authorUrl} />
           </div>
-          {authorBio && (
-            <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              {authorBio}
-            </p>
-          )}
+          {authorBio && <AuthorBio bio={authorBio} />}
         </div>
       </div>
     </div>
