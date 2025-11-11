@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh pr create:*)",
+      "Bash(gh issue view:*)",
+      "Bash(git checkout:*)",
+      "Bash(npm run build:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: Add author profile section below blog posts\n\nImplement author profile display at the end of blog posts to give readers\na more personal connection with the content. This feature allows each post\nto showcase the author''s name, bio, avatar image, and website link.\n\nChanges:\n- Extend Metadata type with author fields (author, authorBio, authorImage, authorUrl)\n- Create AuthorProfile component with dark mode and responsive design\n- Integrate AuthorProfile component into blog post detail page\n- Update JSON-LD structured data to use dynamic author metadata\n- Add author information to existing 3 blog posts (vim, static-typing, spaces-vs-tabs)\n\nThe component gracefully handles missing author data and automatically\ngenerates initial-based avatars when no image is provided.\n\nCloses #2\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)",
+      "Bash(gh label list:*)",
+      "Bash(gh label create:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh api:*)",
+      "Bash(git fetch:*)",
+      "Bash(git merge:*)",
+      "Bash(git commit:*)",
+      "Bash(git pull:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
